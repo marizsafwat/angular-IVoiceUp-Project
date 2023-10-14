@@ -1,0 +1,36 @@
+<table>
+  <thead>
+    <th>#</th>
+    <th>Name</th>
+    <th>email</th>
+    <th>Group</th>
+    <th>Status</th>
+    <th>Date</th>
+    <th></th>
+  </thead>
+  <tbody *ngFor="let emp of employeeList;index as i">
+    <td>{{i}}</td>
+    <td>{{emp.name}}</td>
+    <td>{{emp.email}}</td>
+    <td>{{emp.group}}</td>
+    <td>
+
+      <select *ngIf="!emp.status" [(ngModel)]="emp.status">
+        <option></option>
+        <option>Present</option>
+        <option>Absent</option>
+      </select>
+      <div *ngIf="emp.status">{{emp.status}}
+        <button (click)="emp.status=''">x</button>
+      </div>
+    </td>
+    <td>
+      <input *ngIf="!emp.date" type="date" [(ngModel)]="emp.date" />
+
+      <div *ngIf="emp.date">{{emp.date}}
+        <button (click)="emp.date=''">x</button>
+      </div>
+    </td>
+    <td><button (click)="saveChanges(emp)">Save Changes</button></td>
+  </tbody>
+</table>

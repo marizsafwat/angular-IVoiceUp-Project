@@ -1,0 +1,33 @@
+<button>Add Employee</button>
+<form (ngSubmit)="submitForm()" [formGroup]="employeeForm">
+  <label>Enter Employee Name:</label>
+  <input type="text" placeholder="Employee Name" formControlName="name" />
+  <label>Enter Employee Email:</label>
+  <input type="email" placeholder="Employee Name" formControlName="email" />
+  <label>Enter Employee Group:</label>
+  <select formControlName="group">
+    <option>a</option>
+    <option>b</option>
+  </select>
+  <button>Submit</button>
+</form>
+
+<table>
+  <thead>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Group</th>
+    <th>Actions</th>
+  </thead>
+  <tbody *ngFor="let emp of employeeList; index as i">
+    <td>{{i+1}}</td>
+    <td>{{emp.name}}</td>
+    <td>{{emp.email}}</td>
+    <td>{{emp.group}}</td>
+    <td>
+      <button (click)="editEmp(emp,i)">Edit</button>
+      <button (click)="deleteEmp(i)">Delete</button>
+    </td>
+  </tbody>
+</table>

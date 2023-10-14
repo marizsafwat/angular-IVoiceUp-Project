@@ -1,0 +1,6 @@
+<label>Add new Group Employee Name :</label>
+<input type="text" [(ngModel)]="empGroupName" />
+<button (click)="addGroup()">Submit</button>
+<ul>
+  <li *ngFor="let x of empGroupList">{{x.groupName}}</li>
+</ul>
