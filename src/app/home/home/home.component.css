@@ -1,6 +1,7 @@
 mat-toolbar {
   background: #004a9f;
   color: white;
+  text-align: start;
 }
 
 mat-sidenav {
@@ -34,8 +35,8 @@ mat-sidenav-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 1rem;
-
+  font-size: 0.8rem;
+    margin: 1%;
   mat-icon {
     margin-right: 8px;
   }
@@ -63,4 +64,11 @@ mat-divider {
   margin-top: 16px;
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+mat-button {
+  color: aliceblue;
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: #efe9e9;
 }

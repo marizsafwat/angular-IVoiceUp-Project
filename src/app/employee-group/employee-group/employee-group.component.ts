@@ -40,4 +40,17 @@ export class EmployeeGroupComponent implements OnInit {
     console.log(this.empGroupList);
     this.empGroupName = '';
   }
+
+  deleteGroup(id: string, index: number) {
+    console.log(id);
+    this.empGroupList.splice(index, 1);
+    this.employeeGroupService.deleteGroup(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err.message);
+      },
+    });
+  }
 }

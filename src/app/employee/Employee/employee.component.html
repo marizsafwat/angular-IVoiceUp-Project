@@ -1,18 +1,45 @@
-<button>Add Employee</button>
-<form (ngSubmit)="submitForm()" [formGroup]="employeeForm">
+<h6>Add New Employee</h6>
+<form [formGroup]="employeeForm">
+  <div>
   <label>Enter Employee Name:</label>
-  <input type="text" placeholder="Employee Name" formControlName="name" />
+  <input type="text" placeholder="Employee Name" formControlName="name" class="form-control" required="true" />
+  </div>
+  <span class="text-danger"
+    *ngIf="(employeeForm.controls['name'].touched && employeeForm.controls['name'].errors?.['required'])">
+    Name is required
+  </span>
+  <div>
   <label>Enter Employee Email:</label>
-  <input type="email" placeholder="Employee Name" formControlName="email" />
+  <input type="email" placeholder="Employee Name" formControlName="email" class="form-control" required="true" />
+  </div>
+  <span class="text-danger"
+    *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].errors?.['required']">
+    Email is required
+  </span>
+  <span class="text-danger"
+    *ngIf="employeeForm.controls['email'].touched && employeeForm.controls['email'].errors?.['email']">
+    Enter Email in Correct Form
+  </span>
+  <div>
   <label>Enter Employee Group:</label>
-  <select formControlName="group">
-    <option>a</option>
-    <option>b</option>
+  <select formControlName="group" #group (change)="selectGroup(group.value)" class="form-control" required="true">
+    <option></option>
+    <option *ngFor="let group of empGroupList" value="{{group.id}}">{{group.groupName}}</option>
   </select>
-  <button>Submit</button>
+  <span class="text-danger"
+    *ngIf="employeeForm.controls['group'].touched && employeeForm.controls['group'].errors?.['required']">
+    Group is required
+  </span>
+  </div>
+  <button *ngIf="!editMode" class="btn btn-primary" id="submitBtn" (click)="submitForm()">Submit</button>
+  <div *ngIf="editMode" class="text-center">
+    <button class="btn btn-primary" (click)="submitForm()">Save</button>
+    <button class="btn btn-primary" (click)="editMode=!editMode;employeeForm.reset()">Cancel</button>
+  </div>
+
 </form>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <th>#</th>
     <th>Name</th>
@@ -24,10 +51,10 @@
     <td>{{i+1}}</td>
     <td>{{emp.name}}</td>
     <td>{{emp.email}}</td>
-    <td>{{emp.group}}</td>
+    <td>{{emp.group?.groupName}}</td>
     <td>
-      <button (click)="editEmp(emp,i)">Edit</button>
-      <button (click)="deleteEmp(i)">Delete</button>
+      <button (click)="editEmp(emp,i)" class="btn btn-dark">Edit</button>
+      <button (click)="deleteEmp(emp,i)" class="btn btn-dark">Delete</button>
     </td>
   </tbody>
 </table>

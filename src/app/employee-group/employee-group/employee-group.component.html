@@ -1,6 +1,16 @@
-<label>Add new Group Employee Name :</label>
-<input type="text" [(ngModel)]="empGroupName" />
-<button (click)="addGroup()">Submit</button>
-<ul>
-  <li *ngFor="let x of empGroupList">{{x.groupName}}</li>
+<form>
+  <div class="row">
+    <label class="h6">Add new Group Employee Name :</label>
+    <div class="col">
+      <input type="text" [(ngModel)]="empGroupName" class="form-control mx-sm-3 mb-2" name="inputGroup" />
+    </div>
+    <div class="col">
+      <button (click)="addGroup()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+<ul class="list-group">
+  <li *ngFor="let x of empGroupList;index as i" class="list-group-item">{{i+1}}. {{x.groupName}} <button
+      class="btn btn-primary" (click)="deleteGroup(x.id,i)">x</button>
+  </li>
 </ul>

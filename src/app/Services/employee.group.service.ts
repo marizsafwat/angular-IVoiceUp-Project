@@ -26,4 +26,13 @@ export class EmployeeGroupService {
       }
     );
   }
+
+  deleteGroup(id: string) {
+    return this.http.delete<string>(
+      this.basicUrl + '/api/EmployeeGroup/'+ id,
+      {
+        responseType: 'text' as 'json',
+      }
+    );
+  }
 }
