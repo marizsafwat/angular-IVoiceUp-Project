@@ -74,12 +74,12 @@ export class AuthService {
         .subscribe({
           next: (res) => {
             if (JSON.parse(res).error) {
-              alert('INVALID LOGIN CREDENTIALS');
+              alert('CREDENTIALS ALREADY EXISTS');
             } else {
+              console.log("signedUP")
               //console.log(JSON.parse(res).error);
-              this.loggedIn.next(true);
+              this.loggedIn.next(false);
               valid = true;
-              this.currentEmail = user.email;
               this.router.navigate(['/']);
             }
           },

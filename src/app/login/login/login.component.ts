@@ -58,9 +58,13 @@ export class LoginComponent implements OnInit {
     console.log('signup');
     var valid = false;
     if (this.signUpForm?.valid) {
+      this.signUpMode = false;
       valid = this.authService.signUp(this.signUpForm.value);
     }
 
-    valid ? (this.formSignupSubmitAttempt = true) : null;
+    if (valid) {
+      this.formSignupSubmitAttempt = true;
+      this.signUpMode = false;
+    }
   }
 }

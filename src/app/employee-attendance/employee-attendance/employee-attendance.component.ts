@@ -21,9 +21,19 @@ export class EmployeeAttendanceComponent implements OnInit {
   }
 
   saveChanges(emp: any) {
+    console.log(emp);
     var id = emp.id;
-    delete emp.id;
-    this.employeeService.updateEmployee(id, emp).subscribe({
+    var sentEmp = {
+      name: emp.name,
+      email: emp.email,
+      group: {
+        id: emp.group.id,
+        groupName:emp.group.groupName,
+      },
+      date: emp.date,
+      status:emp.status
+    };
+    this.employeeService.updateEmployee(id, sentEmp).subscribe({
       next: (res) => {
         console.log(res);
       },

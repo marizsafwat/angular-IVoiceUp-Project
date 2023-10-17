@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'employee',
@@ -27,10 +27,10 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: 'login',
-  //   component: LoginComponent,
-  // },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
 ];
 
 
