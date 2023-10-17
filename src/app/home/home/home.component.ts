@@ -22,7 +22,7 @@ export class HomeComponent implements AfterViewInit {
     private router: Router,
     authService: AuthService
   ) {
-    this.currentUser = authService.currentUserName;
+    this.currentUser = authService.currentEmail;
   }
 
   ngAfterViewInit() {

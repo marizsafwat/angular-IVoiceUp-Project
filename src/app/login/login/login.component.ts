@@ -9,14 +9,24 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  signUpForm: FormGroup;
+
+  signUpMode: boolean = false;
   private formSubmitAttempt: boolean = false;
+  private formSignupSubmitAttempt: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit() {
     this.form = this.fb.group({
-      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
+    });
+
+    this.signUpForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      username: ['', Validators.required],
     });
   }
 
@@ -27,10 +37,30 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  isFieldInvalidSignup(field: string) {
+    return (
+      (!this.signUpForm?.get(field)?.valid &&
+        this.signUpForm?.get(field)?.touched) ||
+      (this.signUpForm?.get(field)?.untouched && this.formSignupSubmitAttempt)
+    );
+  }
+
   onSubmit() {
+    console.log('submit');
+    var valid = false;
     if (this.form?.valid) {
-      this.authService.login(this.form.value);
+      valid = this.authService.login(this.form.value);
     }
-    this.formSubmitAttempt = true;
+    valid ? (this.formSubmitAttempt = true) : null;
+  }
+
+  onSignUp() {
+    console.log('signup');
+    var valid = false;
+    if (this.signUpForm?.valid) {
+      valid = this.authService.signUp(this.signUpForm.value);
+    }
+
+    valid ? (this.formSignupSubmitAttempt = true) : null;
   }
 }

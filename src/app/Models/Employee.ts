@@ -1,10 +1,10 @@
 import { EmployeeGroup } from './EmployeeGroup';
 
-export class Employee {
-  id?: string | undefined;
-  name?: string | undefined;
-  email?: string | undefined;
-  group?: EmployeeGroup | undefined;
+export interface Employee {
+  id?: string ;
+  name: string;
+  email: string ;
+  group: EmployeeGroup;
   status?: string | undefined;
   date?: string | undefined;
 }

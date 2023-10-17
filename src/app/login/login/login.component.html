@@ -1,24 +1,54 @@
 <div class="signin-content">
   <mat-card>
     <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p class="h6 ">Please login to the system</p>
+      <div class="text-left">
+        <button class="btn btn-primary" *ngIf="!signUpMode" (click)="signUpMode = true">SignUp</button>
+        <button class="btn btn-primary" *ngIf="signUpMode" (click)="signUpMode = false">Login</button>
+      
+      </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form" *ngIf="!signUpMode">
+        <p class="h6 ">Please login to IVoice up project</p>
         <mat-form-field class="full-width-input" >
-          <input matInput placeholder="User" formControlName="userName" required>
-          <mat-error *ngIf="isFieldInvalid('userName')">
-            Please inform your user name
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="isFieldInvalid('email')">
+            Please inform your Email
           </mat-error>
         </mat-form-field>
         <br />
         <mat-form-field class="full-width-input">
           <input matInput type="password" placeholder="Password" formControlName="password" required>
-          <mat-error *ngIf="isFieldInvalid('userName')">
+          <mat-error *ngIf="isFieldInvalid('password')">
             Please inform your password
           </mat-error>
         </mat-form-field>
         <br />
         <button mat-raised-button class="btn btn-primary text-center" type="submit">Login</button>
       </form>
+<form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" class="form" *ngIf="signUpMode">
+  <p class="h6 ">Please Signup to IVoice up project</p>
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Email" formControlName="email" required>
+    <mat-error *ngIf="isFieldInvalidSignup('email')">
+      Please inform your Email
+    </mat-error>
+  </mat-form-field>
+  <br />
+  <mat-form-field class="full-width-input">
+    <input matInput type="password" placeholder="Password" formControlName="password" required>
+    <mat-error *ngIf="isFieldInvalidSignup('password')">
+      Please inform your password
+    </mat-error>
+  </mat-form-field>
+  <br />
+  <mat-form-field class="full-width-input">
+    <input matInput type="username" placeholder="username" formControlName="username" required>
+    <mat-error *ngIf="isFieldInvalidSignup('userName')">
+      Please inform your password
+    </mat-error>
+  </mat-form-field>
+  <br />
+  <button mat-raised-button class="btn btn-primary text-center" type="submit">SignUp</button>
+</form>
     </mat-card-content>
   </mat-card>
 </div>

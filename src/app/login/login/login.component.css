@@ -2,7 +2,9 @@
   margin-top: 15%;
   margin-right: 30%;
   margin-left: 30%;
-  text-align: center;
   background-color: gray;
   opacity: 0.8;
+}
+.form {
+  text-align: center;
 }

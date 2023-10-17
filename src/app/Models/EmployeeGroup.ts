@@ -1,4 +1,4 @@
-export class EmployeeGroup {
-  id?: string | undefined;
-  groupName?: string | undefined;
+export interface EmployeeGroup {
+  id?: string ;
+  groupName: string;
 }
